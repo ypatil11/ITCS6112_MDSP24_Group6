@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<!-- Basic -->
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<!-- Mobile Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Site Metas -->
+	<title>MovieMate</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-RM6Q2NJ2V0"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'G-RM6Q2NJ2V0');
+	</script>
+	<!-- Site Icons -->
+	<link rel="shortcut icon" href="{% static 'images/logo.png' %}" type="image/x-icon">
+	<link rel="apple-touch-icon" href="{% static 'images/logo.png' %}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+		integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+	<!-- Site CSS -->
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<!-- Responsive CSS -->
+	<link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="{% static 'css/custom.css' %}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+		integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+
+</head>
+
+<body>
+	<!-- Start header -->
+	<header class="top-navbar">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container">
+				<a class="navbar-brand" href="{% url 'home' %}">
+					<img id="main_logo" src="{% static 'images/logo.png' %}"  alt="" />
+				</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food"
+					aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbars-rs-food">
+          <ul class="navbar-nav ml-auto">
+          
+          {% if  request.user.is_authenticated %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-bs-toggle="dropdown" data-toggle="dropdown">{{request.user}} <i class="fa-regular fa-circle-user"></i></a>
+              <div class="dropdown-menu" aria-labelledby="dropdown-a">
+                <a class="nav-link" href="{% url 'home' %}">Dashboard</a>
+                <a href="{% url 'logout' %}" class="nav-item nav-link ">Logout</a>
+              </div>
+            </li>
+          
+          {% else %}
+		  <li class="nav-item">
+            <a href="/admin/" class="nav-item nav-link "></i> Admin</a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'signup' %}" class="nav-item nav-link "></i> Signup</a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'login' %}" class="nav-item nav-link "><i class="fa-regular fa-circle-user"></i> Login</a>
+          </li>
+          {% endif %}
+        
+        </ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+
+	
+	
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+	aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div style="display: inline;"class="modal-header">
+				<div class="d-flex justify-content-center align-items-center">
+				<img style="align-content: center;" src="{% static 'images/logo.png' %}" height="70px" width="70px"  class="modal-logo" alt="Logo">
+				</div>
+				<h3 style="text-align: center;"class="modal-title" id="exampleModalLongTitle">OFFERS</h3>
+				
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				{{off|safe}}
+			</div>
+			<div class="modal-footer">
+				
+				<button type="button" class="btn btn-outline-dark btn-sm" data-dismiss="modal" >Close</button>
+	
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End header -->
+
+
+{% block content %}
+
+
+
+{% endblock %}
+
+<!-- ALL JS FILES -->
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<!-- ALL PLUGINS -->
+<script src="{% static 'js/jquery.superslides.min.js' %}"></script>
+<script src="{% static 'js/images-loded.min.js' %}"></script>
+<script src="{% static 'js/isotope.min.js' %}"></script>
+<script src="{% static 'js/baguetteBox.min.js' %}"></script>
+<script src="{% static 'js/form-validator.min.js' %}"></script>
+<script src="{% static 'js/contact-form-script.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>

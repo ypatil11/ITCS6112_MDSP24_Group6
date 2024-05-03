@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Add Seat{% endblock %}
+
+{% block content %}
+<br><br><br><br><br>
+<div class="container mt-5">
+    <h2>Add Seat Preferences</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="preference_id">Movie Preference ID</label>
+            <input type="number" class="form-control" id="preference_id" name="preference_id" value="{{ pk }}" disabled>
+        </div>
+        <div class="form-group">
+            <label for="number_of_rows_left">Number of Rows Left</label>
+            <input type="number" class="form-control" id="number_of_rows_left" name="number_of_rows_left" value="{{ seat_pref.number_of_rows_left|default_if_none:'' }}" required>
+        </div>
+        <div class="form-group">
+            <label for="number_of_rows_top">Number of Rows Top</label>
+            <input type="number" class="form-control" id="number_of_rows_top" name="number_of_rows_top" value="{{ seat_pref.number_of_rows_top|default_if_none:'' }}" required>
+        </div>
+        <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="is_included" name="is_included" {% if seat_pref.is_included %}checked{% endif %}>
+            <label class="form-check-label" for="is_included">Include</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+
+
+{% endblock %}

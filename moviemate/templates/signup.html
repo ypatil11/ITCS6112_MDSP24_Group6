@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+
+
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="login-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+          <div class="login-form">
+            <div class="text-center"><h1>Sign Up</h1></div>
+            <form method="post">
+              {% csrf_token %}
+              {% if errormsg == "1" %}
+                <div class="form-group has-validation">
+                  <label for="email">Email</label>
+                  <input type="email" class="form-control is-invalid" name="email" required placeholder="Enter your email address">
+                  <span class="help-block invalid-feedback">Please try a different email</span>
+                </div>
+                <div class="form-group has-validation">
+                  <label for="username">Username</label>
+                  <input type="text" class="form-control is-invalid" name="username" required placeholder="Enter your username">
+                  <span class="help-block invalid-feedback">Please try a different username</span>
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" class="form-control" name="password" required placeholder="Enter your password">
+                </div>
+              {% else %}
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" class="form-control" name="email" required placeholder="Enter your email address">
+                </div>
+                <div class="form-group">
+                  <label for="username">Username</label>
+                  <input type="text" class="form-control" name="username" required placeholder="Enter your username">
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" class="form-control" name="password" required placeholder="Enter your password">
+                </div>
+              {% endif %}
+              </div>
+              <button type="submit" class="btn btn-primary">Sign Up</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+
+
+
+{% endblock content %}

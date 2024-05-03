@@ -1,0 +1,51 @@
+<!-- templates/home.html -->
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<br><br><br><br>
+
+<div class="container mt-5">
+    <h1>Hi {{ user.username }}!</h1>
+    <h2>Your Movie Preferences</h2>
+    <div class="mb-3">
+        <a href="{% url 'add_movie_preference' %}" class="btn btn-success">Add New</a>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>City</th>
+                <th>Cinema Name </th>
+                <th>Movie Name</th>
+                <th>Date</th>
+                <th>Number of Seats</th>
+                <th>Time From</th>
+                <th>Time To</th>
+                <th>Processed</th>
+                <th>Selecting Preferences</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for preference in movie_preferences %}
+                <tr>
+                    <td>{{ preference.city }}</td>
+                    <td>{{ preference.cinema_name}}</td>
+                    <td>{{ preference.movie_name }}</td>
+                    <td>{{ preference.date|date:"d M Y" }}</td>
+                    <td>{{ preference.number_of_seats }}</td>
+                    <td>{{ preference.time_from }}</td>
+                    <td>{{ preference.time_to }}</td>
+                    <td>{{ preference.is_processed|yesno:"Yes,No" }}</td>
+                    <td> <a href="{% url 'add_selecting'  pk=preference.id %}" > <button type="button" class="btn btn-info" >Select Seat</button></a> </td>
+                    <td> <a href="{% url 'delete_movie_pref'  pk=preference.id %}" > <button type="button" class="btn btn-danger" >Delete</button></a> </td>
+                </tr>
+            {% empty %}
+                <tr><td colspan="7">No movie preferences found.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+{% endblock %}
